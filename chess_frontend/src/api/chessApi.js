@@ -1,4 +1,11 @@
-const BASE_URL = 'http://localhost:3001';
+/**
+ * Backend base URL.
+ *
+ * Prefer REACT_APP_API_BASE, then REACT_APP_BACKEND_URL, falling back to localhost for dev.
+ * This keeps the frontend portable across environments while matching the required local setup.
+ */
+const RAW_BASE_URL = process.env.REACT_APP_API_BASE || process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001';
+const BASE_URL = RAW_BASE_URL.replace(/\/+$/, '');
 
 /**
  * Parse backend error response into a readable message.
